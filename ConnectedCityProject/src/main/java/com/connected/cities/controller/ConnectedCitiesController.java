@@ -1,13 +1,15 @@
-package com.connected.city.controller;
+package com.connected.cities.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.connected.city.services.IRouteService;
-import com.connected.city.utility.CityUtility;
+import com.connected.cities.services.IRouteService;
+import com.connected.cities.utility.CityUtility;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,7 +19,9 @@ import io.swagger.annotations.ApiResponses;
 @CrossOrigin(origins = "http://localhost:8090")
 @RestController
 @Api(value="findRoutes", description="The REST Api will be used to find whether connection exist between two cities")
-public class ConnectedCityController {
+public class ConnectedCitiesController {
+	
+	private  final Logger log = LoggerFactory.getLogger(this.getClass());
     
 	@Autowired
 	IRouteService service;
@@ -32,12 +36,12 @@ public class ConnectedCityController {
     )
     public String findConnection(@RequestParam(name = "origin") String origin, @RequestParam(name = "destination") String destination) {
     	
-    	if(CityUtility.checkBothSameCity(origin, destination)) {
-    		System.out.println("StupidQuestion");
+    	if(CityUtility.isBothCitySame(origin, destination)) {
+    		log.info("Ahha ,The question is not correct");
     		return "No";
     	}
     	
-    	return service.checkConnection(origin,destination);
+    	return service.findConnection(origin.trim().toLowerCase(),destination.trim().toLowerCase());
       
     }
 }

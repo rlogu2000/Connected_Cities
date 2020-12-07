@@ -1,4 +1,4 @@
-package com.connected.city.application;
+package com.connected.cities.application;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,21 +8,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.connected.city.utility.CityFactory;
+import com.connected.cities.utility.CityGraphSingleton;
 
 
 
 @SpringBootApplication
-@ComponentScan(basePackages={"com.connected.city"})
-public class ConnectedCityApplication {  
-	private static final Logger log = LoggerFactory.getLogger(ConnectedCityApplication.class);
+@ComponentScan(basePackages={"com.connected.cities"})
+public class ConnectedCitiesApplication {  
+	private  final Logger log = LoggerFactory.getLogger(this.getClass());
 	public static void main(String[] args) {
-		SpringApplication.run(ConnectedCityApplication.class, args);
+		SpringApplication.run(ConnectedCitiesApplication.class, args);
     } 
 	@Bean
 	public CommandLineRunner loadCities() {
 		return (args) -> {
-			CityFactory.getInstance();
+			CityGraphSingleton.getInstance();
 		};
 	}
 	

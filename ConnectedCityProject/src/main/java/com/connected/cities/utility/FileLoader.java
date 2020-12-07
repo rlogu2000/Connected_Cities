@@ -1,10 +1,9 @@
-package com.connected.city.utility;
+package com.connected.cities.utility;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.MappedByteBuffer;
@@ -23,25 +22,23 @@ public class FileLoader {
 	 *            data file path.
 	 * @return {@link BufferedReader} referencing loaded data.
 	 * */
-	public BufferedReader loadFile(final File dataFile) {
+	public BufferedReader loadFile(final File dataFile)throws Exception {
 		checkFile(dataFile);
 		MappedByteBuffer mByteBuffer = loadDataFile(dataFile);
 		return getBufferedReader(mByteBuffer);
 	}
 
-	protected final MappedByteBuffer loadDataFile(final File dataFile) {
+	protected final MappedByteBuffer loadDataFile(final File dataFile)throws Exception {
 		
 		MappedByteBuffer mBytebuffer = null;
 		
 		try(FileInputStream fInputStream=new FileInputStream(dataFile);FileChannel fChannel=fInputStream.getChannel()) {
 			mBytebuffer = fChannel.map(MapMode.READ_ONLY, 0, fChannel.size());
-		} catch (FileNotFoundException ex) {
-			Terminator.terminate(ex.getMessage(), 1);
-		} catch (IOException e) {
-			Terminator.terminate(e.getMessage(), 1);
+		} catch (IOException ex) {
+			throw ex;
 		}
 		catch (Exception e) {
-			Terminator.terminate(e.getMessage(), 1);
+			throw e;
 		}
 		return mBytebuffer;
 	}
@@ -49,30 +46,12 @@ public class FileLoader {
 	/**
 	 * @return {@link BufferedReader} to read through {@link MappedByteBuffer}
 	 * */
-	protected final BufferedReader getBufferedReader(
-			final MappedByteBuffer mByteBuffer) {
+	protected final BufferedReader getBufferedReader(final MappedByteBuffer mByteBuffer)throws Exception {
 		byte[] buffer = new byte[mByteBuffer.limit()];
 		mByteBuffer.get(buffer);
 		ByteArrayInputStream isr = new ByteArrayInputStream(buffer);
 		InputStreamReader ip = new InputStreamReader(isr);
 		return new BufferedReader(ip);
-	}
-
-	/**
-	 * Close file input stream quietly.
-	 *
-	 * @param fis
-	 *            file stream to close.
-	 * */
-	protected final void closeResource(final FileInputStream fis,
-			final FileChannel fChannel) {
-		try {
-			fis.close();
-			fChannel.close();
-		} catch (IOException ex) {
-			Terminator.terminate(ex.getMessage(), 1);
-		}
-
 	}
 
 	/**
@@ -82,15 +61,12 @@ public class FileLoader {
 	 * @param targetFile
 	 *            file to check.
 	 * */
-	protected final void checkFile(final File file) {
+	protected final void checkFile(final File file)throws Exception {
 		if (!file.exists()) {
-			Terminator.terminate(
-					file.getName() + ErrorMsgs.FILE_NOT_FOUND.value(), 1);
-		}
+			throw new Exception(ErrorMessages.FILE_NOT_FOUND.toString());
+		}	
 		if (file.length() == 0) {
-			Terminator.terminate(
-					file.getName() + ErrorMsgs.FILE_IS_EMPTY.value(), 1);
+			throw new Exception(ErrorMessages.FILE_IS_EMPTY.toString());
 		}
-	}
-
+	 }
 }

@@ -1,4 +1,7 @@
-package com.connected.city.utility;
+package com.connected.cities.utility;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Terminator used to terminate the program.
@@ -12,8 +15,9 @@ public class Terminator {
 	 * @param status
 	 *            integer representation of the exist status.
 	 * */
+	private static final Logger log = LoggerFactory.getLogger(Terminator.class);
 	public static void terminate(final String message, final int status) {
-		System.out.println(message);
+		log.info(message);
 		System.exit(status);
 	}
 

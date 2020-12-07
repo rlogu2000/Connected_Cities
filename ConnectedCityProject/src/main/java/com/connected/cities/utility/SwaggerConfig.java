@@ -1,4 +1,4 @@
-package com.connected.city.utility;
+package com.connected.cities.utility;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
