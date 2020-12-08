@@ -26,7 +26,7 @@ public enum CityGraphSingleton {
     	try {
 			RoutesBuilder rb = new RoutesBuilder();
 			this.graph=rb.buildPath();
-			log.info(" graph "+graph);
+			log.info("***The final Graph ***"+graph);
     	}catch(Exception ex) {
     		Terminator.terminate(ex.getMessage(), 1);
     		ex.printStackTrace();

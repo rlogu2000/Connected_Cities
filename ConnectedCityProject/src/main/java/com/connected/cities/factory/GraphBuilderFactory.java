@@ -14,14 +14,14 @@ public class GraphBuilderFactory {
 	
 	public static GraphBuilder createGraphBuilder (String type) {
 		   log.info("Graph Type "+type);	
-	       if (type.equalsIgnoreCase(DIRECTED_GRAPH)){
-	              return new DirectedGraphBuilder();
-	       }else if(type.equalsIgnoreCase(UNDIRECTED_GRAPH)){
-	              return new UndirectedGraphBuilder();
-	 	   }else if(type.equalsIgnoreCase(DIRECTED_ACYLIC_GRAPH)){
-	 		  return new DirectedAcyclicGraphBuilder();
-		   }else if(type.equalsIgnoreCase(DIRECTED_WEIGHTED_GRAPH)){
-			  return new DirectedWeightedGraph();
+	       if (type!=null && type.equalsIgnoreCase(DIRECTED_GRAPH)){
+	            return new DirectedGraphBuilder();
+	       }else if(type!=null && type.equalsIgnoreCase(UNDIRECTED_GRAPH)){
+	            return new UndirectedGraphBuilder();
+	 	   }else if(type!=null && type.equalsIgnoreCase(DIRECTED_ACYLIC_GRAPH)){
+	 		    return new DirectedAcyclicGraphBuilder();
+		   }else if(type!=null && type.equalsIgnoreCase(DIRECTED_WEIGHTED_GRAPH)){
+			    return new DirectedWeightedGraph();
 		   }
 	       return null;
 	}

@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+import lombok.ToString;
+@ToString
 public class Graph<T> {
 	
 	private Map<Vertex<T>, List<Vertex<T>>> adjVertices=new ConcurrentHashMap<>();
@@ -20,7 +22,6 @@ public class Graph<T> {
 	    adjVertices.values().stream().forEach(e -> e.remove(v));
 	    adjVertices.remove(new Vertex<T>(object));
 	}
-	
 	public void addEdge(T object1, T object2) {
 	    Vertex<T> v1 = new Vertex<T>(object1);
 	    Vertex<T> v2 = new Vertex<T>(object2);
@@ -42,11 +43,12 @@ public class Graph<T> {
 	public Optional<List<Vertex<T>>> getAdjVertices(T object) {
 	    return Optional.ofNullable(adjVertices.get(new Vertex<T>(object)));
 	}
+	public Map<Vertex<T>, List<Vertex<T>>> getAdjVertices() {
+	    return adjVertices;
+	}
 	public Vertex<T> createVertex(T label) {
 	    return new Vertex<T>(label);
 	}
 	
 	
-
-
 }

@@ -48,8 +48,14 @@ public class DepthFirstSearchStrategy implements GraphSearchStrategy {
 		DepthFirstSearchStrategy.getThreadLocal().remove();
 		City city=City.valueOf(startPoint);	
 					
-		if(cities.getAdjVertices(city).isPresent())
+		if(cities.getAdjVertices(city).isPresent() && endPoint!=null) {
 			search(cities.getAdjVertices(city).get(),city);
+		}
+		else
+		{
+			System.out.println(" Start Point "+startPoint+" End Point "+endPoint +" has issues");
+			
+		}
 		DepthFirstSearchStrategy.getThreadLocal().remove();
 		return connectionFound;
 	}

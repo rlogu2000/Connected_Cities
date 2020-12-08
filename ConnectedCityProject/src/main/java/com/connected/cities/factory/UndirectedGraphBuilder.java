@@ -42,10 +42,7 @@ public class UndirectedGraphBuilder extends GraphBuilder {
 		printGraph(graph);
 		return graph;
 	}
-	
 	private void printGraph(Graph<City> graph){
-
-		
 	}
 	private String[] getEdges(final String line)throws Exception {
 		String[] cities=line.trim().toLowerCase().replace(DELIMITER + " ",DELIMITER).split(DELIMITER);

@@ -13,4 +13,8 @@ public class Vertex<T> {
 	public Vertex(T object){
 		this.object=object;
 	}
+	
+	public String toString() {
+		return object.toString();
+	}
 }

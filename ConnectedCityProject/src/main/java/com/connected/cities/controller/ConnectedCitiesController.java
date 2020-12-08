@@ -3,13 +3,16 @@ package com.connected.cities.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.connected.cities.services.IRouteService;
 import com.connected.cities.utility.CityUtility;
+import com.connected.cities.utility.Result;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,7 +28,8 @@ public class ConnectedCitiesController {
     
 	@Autowired
 	IRouteService service;
-    @RequestMapping("/connected")
+  
+    @RequestMapping(value = "/connected", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Find Connection Exist between cities", response = String.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved the Result"),
@@ -36,12 +40,18 @@ public class ConnectedCitiesController {
     )
     public String findConnection(@RequestParam(name = "origin") String origin, @RequestParam(name = "destination") String destination) {
     	
+    	if(origin==null ||origin.trim().length()==0 || destination==null ||  destination.trim().length()==0) {
+    		log.info("Getting Origin and/or Destination as Null");
+    		return new Result("No").toString();
+    	}
     	if(CityUtility.isBothCitySame(origin, destination)) {
     		log.info("Ahha ,The question is not correct");
-    		return "No";
+    		return new Result("No").toString();
     	}
     	
-    	return service.findConnection(origin.trim().toLowerCase(),destination.trim().toLowerCase());
+    	String result=service.findConnection(origin.trim().toLowerCase(),destination.trim().toLowerCase());
+    	log.info(" The Result "+result);
+    	return new Result(result).toString();
       
     }
 }

@@ -56,7 +56,7 @@ public class FileLoader {
 
 	/**
 	 * Checks if the file exist or not, empty or not. Incase of file doesn't
-	 * exist a file doesn't exist will
+	 * exist a file doesn't exist exception is generated
 	 *
 	 * @param targetFile
 	 *            file to check.
