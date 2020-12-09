@@ -2,6 +2,8 @@ package com.connected.cities.utility;
 
 
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,6 +11,7 @@ import com.connected.cities.factory.City;
 import com.connected.cities.factory.Graph;
 import com.connected.cities.factory.GraphBuilder;
 import com.connected.cities.factory.GraphBuilderFactory;
+import com.connected.cities.factory.InvalidFileException;
 
 /**
  * Builds connections between cities.
@@ -26,7 +29,11 @@ public class RoutesBuilder {
 			Graph<City> g=gb.buildGraph();
 			
 			return g;
-	    }catch(Exception ex) {
+	    }catch(IOException|InvalidFileException ex) {
+	    	//log.error(ex.getMessage(), ex); //No need to log exception here, we need to log at the starting point
+	    	throw ex;
+	    }
+		catch(Exception ex) {
 	    	//log.error(ex.getMessage(), ex); //No need to log exception here, we need to log at the starting point
 	    	throw ex;
 	    }

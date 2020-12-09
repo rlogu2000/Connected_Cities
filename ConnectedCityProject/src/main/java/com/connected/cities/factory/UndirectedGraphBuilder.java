@@ -35,11 +35,11 @@ public class UndirectedGraphBuilder extends GraphBuilder {
 				graph.addEdge(cityA,cityB);
 			}
 		} catch (IOException|InvalidFileException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw e;
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			throw e;
 		}
 		printGraph(graph);
