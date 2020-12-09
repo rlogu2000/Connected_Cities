@@ -4,7 +4,7 @@
 package com.connected.cities.factory;
 
 /**
- * @author THANISSHKA
+ * @author loganathan
  *
  */
 public class InvalidFileException extends Exception{
@@ -18,7 +18,6 @@ public class InvalidFileException extends Exception{
 	 * 
 	 */
 	public InvalidFileException() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public InvalidFileException(String message) {
