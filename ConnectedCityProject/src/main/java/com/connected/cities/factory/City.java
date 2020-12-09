@@ -40,7 +40,7 @@ public class City implements Serializable {
 	@Override
     public String toString(){
 		StringBuilder sb=new StringBuilder();
-		sb.append("[ Name : "+name+"]\r\n");
+		sb.append("[ Name : "+name+"]");
 		return sb.toString();
 	}
 }
