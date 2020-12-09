@@ -1,4 +1,4 @@
-package com.connected.cities.model;
+package com.connected.cities.factory;
 
 import java.io.Serializable;
 

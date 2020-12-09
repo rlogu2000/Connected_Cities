@@ -1,12 +1,11 @@
 package com.connected.cities.factory;
 
-
-import com.connected.cities.model.City;
-import com.connected.cities.model.Graph;
-
 public class DirectedWeightedGraph  extends GraphBuilder {
 	
-	public Graph<City>  buildGraph()throws Exception{
-		return null;
+	public Graph<City> buildGraph()throws InvalidFileException{
+		throw new UnsupportedOperationException("Implementation is not complete");
+	}
+	public Graph<City> buildGraph(String file)throws InvalidFileException{
+		throw new UnsupportedOperationException("Implementation is not complete");
 	}
 }

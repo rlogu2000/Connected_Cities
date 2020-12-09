@@ -7,9 +7,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.connected.cities.model.City;
-import com.connected.cities.model.Graph;
-import com.connected.cities.model.Vertex;
+import com.connected.cities.factory.City;
+import com.connected.cities.factory.Graph;
+import com.connected.cities.factory.Vertex;
 
 public class DepthFirstSearchStrategy implements GraphSearchStrategy {
 	
@@ -38,22 +38,22 @@ public class DepthFirstSearchStrategy implements GraphSearchStrategy {
 		this.cities=cities;
 		
 	}
-	public static Map<String,Boolean> getThreadLocalValue(){
+	private static Map<String,Boolean> getThreadLocalValue(){
 	   	return visited.get();
 	}
-	public static ThreadLocal<Map<String,Boolean>> getThreadLocal(){
+	private static ThreadLocal<Map<String,Boolean>> getThreadLocal(){
 	   	return visited;
 	}
-	public boolean search() {
+	public boolean search() throws Exception {
 		DepthFirstSearchStrategy.getThreadLocal().remove();
 		City city=City.valueOf(startPoint);	
-					
+		
 		if(cities.getAdjVertices(city).isPresent() && endPoint!=null) {
 			search(cities.getAdjVertices(city).get(),city);
 		}
 		else
 		{
-			System.out.println(" Start Point "+startPoint+" End Point "+endPoint +" has issues");
+			log.info(" Start Point "+startPoint+" End Point "+endPoint +" has issues");
 			
 		}
 		DepthFirstSearchStrategy.getThreadLocal().remove();
@@ -80,8 +80,8 @@ public class DepthFirstSearchStrategy implements GraphSearchStrategy {
                                                   search(cities.getAdjVertices(nextCity.getObject()).get(),nextCity.getObject());
                                                 }
                                                 else {
-                                                	log.info("Connection Found So returning");
-                                                	return;
+                                                  log.info("Connection Found So returning");
+                                                  return;
                                                 }
                                             });
 		log.info("End of Search");

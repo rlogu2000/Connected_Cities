@@ -12,15 +12,16 @@ public class GraphBuilderFactory {
 	
 	private static  final Logger log = LoggerFactory.getLogger(GraphBuilderFactory.class);
 	
-	public static GraphBuilder createGraphBuilder (String type) {
-		   log.info("Graph Type "+type);	
-	       if (type!=null && type.equalsIgnoreCase(DIRECTED_GRAPH)){
+	public static GraphBuilder createGraphBuilder(String type) {
+		   log.info("Graph Type "+type);
+		   if(type==null)return null;
+	       if (type.equalsIgnoreCase(DIRECTED_GRAPH)){
 	            return new DirectedGraphBuilder();
-	       }else if(type!=null && type.equalsIgnoreCase(UNDIRECTED_GRAPH)){
+	       }else if(type.equalsIgnoreCase(UNDIRECTED_GRAPH)){
 	            return new UndirectedGraphBuilder();
-	 	   }else if(type!=null && type.equalsIgnoreCase(DIRECTED_ACYLIC_GRAPH)){
+	 	   }else if(type.equalsIgnoreCase(DIRECTED_ACYLIC_GRAPH)){
 	 		    return new DirectedAcyclicGraphBuilder();
-		   }else if(type!=null && type.equalsIgnoreCase(DIRECTED_WEIGHTED_GRAPH)){
+		   }else if(type.equalsIgnoreCase(DIRECTED_WEIGHTED_GRAPH)){
 			    return new DirectedWeightedGraph();
 		   }
 	       return null;

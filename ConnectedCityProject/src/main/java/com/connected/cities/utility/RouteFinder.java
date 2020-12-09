@@ -15,8 +15,13 @@ public class RouteFinder {
 	 * @return false if there is no connection between to cities.
 	 * */
 	
-	public boolean isConnected(GraphSearchStrategy gss) {
-		return gss.search();
-		
+	public boolean isConnected(GraphSearchStrategy gss)
+	{
+		try {
+			return gss.search();
+		}catch(Exception ex) {
+			log.info("Exception : "+ex);
+		}
+		return false;
 	}
 }

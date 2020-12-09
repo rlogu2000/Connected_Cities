@@ -4,8 +4,8 @@ package com.connected.cities.utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.connected.cities.model.City;
-import com.connected.cities.model.Graph;
+import com.connected.cities.factory.City;
+import com.connected.cities.factory.Graph;
 
 public enum CityGraphSingleton {
     
@@ -16,18 +16,19 @@ public enum CityGraphSingleton {
     private Graph<City> graph=null; 
     private CityGraphSingleton() {
     	log.info("Singleton Insance Created");
-    	loadCities();
+    	createRoutes();
         
     }
     public static CityGraphSingleton  getInstance() {
     	return INSTANCE;
     }
-    private void loadCities() {
+    private void createRoutes() {
     	try {
 			RoutesBuilder rb = new RoutesBuilder();
 			this.graph=rb.buildPath();
 			log.info("***The final Graph ***"+graph);
     	}catch(Exception ex) {
+	    	log.error(ex.getMessage(), ex); 
     		Terminator.terminate(ex.getMessage(), 1);
     		ex.printStackTrace();
     	}
