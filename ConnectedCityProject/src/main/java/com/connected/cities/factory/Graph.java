@@ -13,8 +13,7 @@ public class Graph<T> {
 	
 	private Map<Vertex<T>, List<Vertex<T>>> adjVertices=new ConcurrentHashMap<>();
 	
-	
-	protected void addVertex(T object) {
+		protected void addVertex(T object) {
 	    adjVertices.putIfAbsent(new Vertex<T>(object), new ArrayList<>());
 	}
 
@@ -42,8 +41,6 @@ public class Graph<T> {
 	        eV2.remove(v1);
 	}
 	public Optional<List<Vertex<T>>> getAdjVertices(T object) {
-		
-		System.out.println(" The List : "+adjVertices.get(new Vertex<T>(object)));
 	    return Optional.ofNullable(Collections.unmodifiableList(adjVertices.get(new Vertex<T>(object))));
 	}
 	public Map<Vertex<T>, List<Vertex<T>>> getAdjVertices() {
