@@ -14,8 +14,8 @@
 	<name>ConnectedCityProject</name>
 	<description>Finding City Connections</description>
 
-<properties>
-		<java.version>1.8</java.version>
+    <properties>
+		<java.version>1.9</java.version>
 	</properties>
 	
   <repositories>	

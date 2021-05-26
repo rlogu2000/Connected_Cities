@@ -1,6 +1,15 @@
 package com.connected.cities.search.strategy;
 
+/**
+ *
+ * @author THANISSHKA
+ */
 public interface GraphSearchStrategy {
 
-	public boolean search() throws Exception;
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public boolean search() throws Exception;
 }

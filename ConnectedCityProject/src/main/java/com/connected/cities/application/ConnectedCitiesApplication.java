@@ -1,29 +1,40 @@
 package com.connected.cities.application;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import static com.connected.cities.utility.CityGraphSingleton.getInstance;
+
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
+
+import static org.springframework.boot.SpringApplication.run;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.connected.cities.utility.CityGraphSingleton;
-
-
-
+/**
+ *
+ * @author LOGANATHAN
+ */
 @SpringBootApplication
-@ComponentScan(basePackages={"com.connected.cities"})
-public class ConnectedCitiesApplication {  
-	private  final Logger log = LoggerFactory.getLogger(this.getClass());
-	public static void main(String[] args) {
-		SpringApplication.run(ConnectedCitiesApplication.class, args);
-    } 
-	@Bean
+@ComponentScan(basePackages = { "com.connected.cities" })
+public class ConnectedCitiesApplication {
+
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+		run(ConnectedCitiesApplication.class, args);
+	}
+  
+    /**
+     *
+     * @return
+     */
+    @Bean
 	public CommandLineRunner loadCities() {
 		return (args) -> {
-			CityGraphSingleton.getInstance();
+			getInstance();
 		};
 	}
-	
-}  
+
+}

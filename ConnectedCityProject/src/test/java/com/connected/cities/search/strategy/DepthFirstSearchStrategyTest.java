@@ -1,20 +1,23 @@
-/**
- * 
- */
+
 package com.connected.cities.search.strategy;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+
+import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author Loganathan.
  *
  */
+@RunWith(SpringRunner.class)
 public class DepthFirstSearchStrategyTest {
 
 	/**
@@ -46,19 +49,22 @@ public class DepthFirstSearchStrategyTest {
 	}
 
 	/**
-	 * Test method for {@link com.connected.cities.search.strategy.DepthFirstSearchStrategy#DepthFirstSearchStrategy(java.lang.String, java.lang.String, com.connected.cities.model.Graph)}.
+	 * Test method for
+	 * {@link com.connected.cities.search.strategy.DepthFirstSearchStrategy#DepthFirstSearchStrategy(java.lang.String, java.lang.String, com.connected.cities.model.Graph)}.
 	 */
 	@Test
-	public final void testDepthFirstSearchStrategy() {
+	public void testDepthFirstSearchStrategy() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	/**
-	 * Test method for {@link com.connected.cities.search.strategy.DepthFirstSearchStrategy#search()}.
+	 * Test method for
+	 * {@link com.connected.cities.search.strategy.DepthFirstSearchStrategy#search()}.
 	 */
 	@Test
-	public final void testSearch() {
+	public void testSearch() {
 		fail("Not yet implemented"); // TODO
 	}
+    private static final Logger LOG = Logger.getLogger(DepthFirstSearchStrategyTest.class.getName());
 
 }

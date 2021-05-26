@@ -1,7 +1,17 @@
 package com.connected.cities.services;
 
+/**
+ *
+ * @author THANISSHKA
+ */
 public interface IRouteService {
-	
-	public String findConnection(final String startPoint,final String endPoint);
+
+    /**
+     *
+     * @param startPoint
+     * @param endPoint
+     * @return
+     */
+    public String findConnection(final String startPoint, final String endPoint);
 
 }

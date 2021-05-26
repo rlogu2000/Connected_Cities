@@ -1,27 +1,25 @@
 package com.connected.cities.utility;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.connected.cities.search.strategy.GraphSearchStrategy;
 
-
+/**
+ *
+ * @author THANISSHKA
+ */
 public class RouteFinder {
-	
-	private static final Logger log = LoggerFactory.getLogger(RouteFinder.class);
-    
-    /**
+
+	/**
+     * @param gss
 	 * @return false if there is no connection between to cities.
-	 * */
-	
-	public boolean isConnected(GraphSearchStrategy gss)
-	{
+	 */
+
+	public boolean isConnected(GraphSearchStrategy gss) {
 		try {
 			return gss.search();
-		}catch(Exception ex) {
-			log.info("Exception : "+ex);
+		} catch (Exception ex) {
+			log.info("Exception : " + ex);
 		}
 		return false;
 	}
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(RouteFinder.class.getName());
 }
